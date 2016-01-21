@@ -34,9 +34,11 @@ module.exports.locationsListByDistance = function(req, res) {
   };
   var geoOptions = {
     spherical: true,
-    maxDistance: theEarth.getRadsFromDistance(maxDistance),
-    num: 10
+    maxDistance: maxDistance,//theEarth.getRadsFromDistance(maxDistance),
+    num: 10,
+    distanceMultiplier : 1/6371
   };
+//  console.log(theEarth.getRadsFromDistance(maxDistance));
   if (!lng || !lat || !maxDistance) {
     console.log('locationsListByDistance missing params');
     sendJSONresponse(res, 404, {
